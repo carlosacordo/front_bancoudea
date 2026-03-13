@@ -50,8 +50,18 @@ const Table: React.FC<TableProps> = ({
               </p>
             )}
           </div>
+          
           {/* right-hand controls: search + download */}
-          <div className="flex ml-auto max-w-full gap-2 shrink-0">
+          <div className="flex ml-auto  gap-2 shrink-0">
+            <div>
+              <button
+                  className="btn bg-green-500 text-white px-2 py-1 rounded"
+                  type="button"
+                  
+                >
+                  CREAR
+                </button>
+              </div>
             {showSearch && (
               <div className="w-full">
                 <div className="relative h-10">
