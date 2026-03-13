@@ -4,6 +4,7 @@
 :root {
   --color-primary: rgb(44, 41, 216);
   --color-secondary: rgb(100, 116, 139);
+  --color-create: rgb(50, 168, 79);
   --color-alert: rgb(239, 68, 68);
   --color-text-light: rgb(250, 252, 252);
 }
@@ -29,8 +30,18 @@ body {
     font-weight: 50;
     color: var(--color-text-light);
     text-align: center;
-    
     background-color: var(--color-primary);
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.btn-create {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 50;
+    color: var(--color-text-light);
+    text-align: center;
+    background-color: var(--color-create);
     border-radius: 0.25rem;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
