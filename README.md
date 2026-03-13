@@ -15,9 +15,8 @@ Permite buscar y visualizar la información de los clientes registrados en el si
 
 Funciones principales:
 - 🔎 Búsqueda de clientes
-- 📄 Visualización de información detallada
 - 🧾 Consulta rápida de datos relevantes
-
+- 👤 Creación de Clientes
 ---
 
 ### 💸 Realizar Transacción
