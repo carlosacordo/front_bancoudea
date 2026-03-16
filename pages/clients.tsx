@@ -1,6 +1,7 @@
-  import React, { useState, useEffect } from 'react';
-import Table, { Client } from '../components/molecules/Table';
+import React, { useState, useEffect } from 'react';
+import Table from '../components/molecules/Table';
 import ModalClient, { ModalMode } from '../components/molecules/ModalClient';
+import { Client } from '../types/clients';
 
 const ClientsPage: React.FC = () => {
   const [allClients, setAllClients] = useState<Client[]>([]);
@@ -141,7 +142,7 @@ const ClientsPage: React.FC = () => {
       </div>
 
       <Table
-        clients={clients}
+        data={clients}
         onCreate={handleCreate}
         onEdit={handleEdit}
         title=""
@@ -149,6 +150,10 @@ const ClientsPage: React.FC = () => {
         showSearch={true}
         onSearch={handleSearch}
         onDelete={handleDeleteClient}
+        columns={["Nombre","Apellidos","Saldo","Número de cuenta","Acciones"]}
+        fields={["firstName","lastName","balance","accountNumber"]}
+        actions={["onEdit","onDelete"]}
+        showCreateButton={true}
         />
       {modalOpen && (
         <ModalClient

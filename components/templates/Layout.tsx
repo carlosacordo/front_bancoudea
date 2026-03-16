@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from '../organisms/Sidebar';
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);

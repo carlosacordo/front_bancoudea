@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../atoms/Button';
-import { Client } from './Table';
+import { Client } from '../../types/clients';
+
 
 export type ModalMode = 'view' | 'edit';
 
@@ -111,13 +112,10 @@ const ModalClient: React.FC<ModalClientProps> = ({
             />
           </div>
           <div className="flex justify-end space-x-2 mt-4">
-            <Button type="button" onClick={onClose} className="bg-gray-500">
-              Cerrar
-            </Button>
+            <Button type="button" onClick={onClose} classNameContent="bg-gray-500 text-white px-4 py-2 rounded"  label='Cerrar'/>
+              
             {!readOnly && (
-              <Button type="submit" className="bg-blue-500">
-                Guardar
-              </Button>
+              <Button type="submit" classNameContent="bg-blue-500 text-white px-4 py-2 rounded" label='Guardar' />
             )}
           </div>
         </form>
