@@ -1,17 +1,7 @@
 import React, { useState } from "react";
+import Button from "../components/atoms/Button";
+import Table from "../components/molecules/Table";
 
-interface Transaction {
-  id: number;
-  fromAccount: string;
-  toAccount: string;
-  amount: number;
-  date: string;
-}
-
-interface HistoryPageProps {
-  transactions: Transaction[];
-  showSearch?: boolean;
-}
 
 const HistoryPage: React.FC<HistoryPageProps> = ({
   transactions: initialTransactions,
@@ -89,15 +79,14 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
                 onChange={handleSearchChange}
                 aria-label="Buscar transacción por Nro de Cuenta"
               />
-              <button
+              <Button
                 onClick={handleSearchClick}
-                className={`h-10 px-4 rounded-lg text-white transition ${
+                classNameContent={`h-10 px-4 rounded-lg text-white transition ${
                   loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
                 }`}
                 disabled={loading}
-              >
-                {loading ? "Buscando..." : "Buscar"}
-              </button>
+                label={loading ? "Buscando..." : "Buscar"}
+              />
             </div>
           )}
         </div>
@@ -107,34 +96,16 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
         {transactions?.length === 0 && errorMessage ? (
           <p className="text-center text-gray-500 font-semibold">{errorMessage}</p>
         ) : (
-          <table className="w-full text-left table-auto min-w-max">
-            <thead>
-              <tr>
-                {["# Transacción", "Cuenta Emisora", "Cuenta Receptora", "Monto", "Fecha"].map(
-                  (col) => (
-                    <th key={col} className="py-3">
-                      <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                        {col}
-                      </p>
-                    </th>
-                  )
-                )}
-              </tr>
-            </thead>
-            <tbody>
-              {transactions?.map((tx) => (
-                <tr key={tx.id} className="hover:bg-gray-50 even:bg-gray-100">
-                  <td className="py-3 font-bold text-sm text-blue-gray-900">{tx.id}</td>
-                  <td className="py-3 text-sm text-blue-gray-900">{tx.fromAccount}</td>
-                  <td className="py-3 text-sm text-blue-gray-900">{tx.toAccount}</td>
-                  <td className="py-3 text-sm text-blue-gray-900">${tx.amount?.toFixed(2)}</td>
-                  <td className="py-3 text-sm text-blue-gray-900">
-                    {new Date(tx.date).toLocaleDateString()}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <Table
+            columns={["# Transacción", "Cuenta Emisora", "Cuenta Receptora", "Monto", "Fecha"]}
+            data={transactions || []}
+            fields={["id", "fromAccount", "toAccount", "amount", "date"]}
+            onCreate={() => {}}
+            onDelete={() => {}}
+            onEdit={() => {}}
+            showSearch={true}
+            />
+
         )}
       </div>
     </div>

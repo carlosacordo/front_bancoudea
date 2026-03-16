@@ -1,10 +1,7 @@
 import React from "react";
 import Link from "next/link";
+import Button from "../atoms/Button";
 
-interface SidebarProps {
-  isOpen: boolean;
-  onToggle: () => void;
-}
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
   const menu = [
@@ -20,12 +17,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
     >
       {/* Toggle */}
       <div className={`flex p-3 ${isOpen ? "justify-end" : "justify-center"}`}>
-        <button
+        <Button
           onClick={onToggle}
-          className="p-2 rounded-md hover:bg-slate-800 transition bg-transparent"
+          classNameContent="p-2 rounded-md hover:bg-slate-800 transition bg-transparent"
+          label=""
         >
           <i className={`fas ${isOpen ? "fa-xmark" : "fa-bars"} text-lg`} />
-        </button>
+        </Button>
       </div>
 
       {/* Menu */}

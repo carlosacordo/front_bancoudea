@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from '../components/atoms/Button';
 
 const TransactionPage: React.FC = () => {
   const [senderAccountNumber, setSenderAccountNumber] = useState('');
@@ -101,16 +102,16 @@ const TransactionPage: React.FC = () => {
       {error && <p className="text-red-500 text-sm">{error}</p>}
       {success && <p className="text-green-500 text-sm">{success}</p>}
 
-      <button
+      <Button
         type="button"
         onClick={handleSubmit}
-        className={`bg-blue-600 text-white px-4 py-2 rounded-lg transition hover:bg-blue-700 ${
+        classNameContent={`bg-blue-600 text-white px-4 py-2 rounded-lg transition hover:bg-blue-700 ${
           loading ? 'opacity-50 cursor-not-allowed' : ''
         }`}
         disabled={loading}
-      >
-        {loading ? 'Enviando...' : 'Enviar'}
-      </button>
+        label={loading ? 'Enviando...' : 'Enviar'}
+      />
+      
     </div>
   );
 };

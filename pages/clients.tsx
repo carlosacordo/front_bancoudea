@@ -1,12 +1,13 @@
-  import React, { useState, useEffect } from 'react';
-import Table, { Client } from '../components/molecules/Table';
+import React, { useState, useEffect } from 'react';
+import Table from '../components/molecules/Table';
 import ModalClient, { ModalMode } from '../components/molecules/ModalClient';
+import { Client } from '../types/clients';
 
 const ClientsPage: React.FC = () => {
   const [allClients, setAllClients] = useState<Client[]>([]);
   const [clients, setClients] = useState<Client[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalMode, setModalMode] = useState<ModalMode>('view');
+  const [modalMode, setModalMode] = useState<ModalMode>('Crear');
   const [selectedClient, setSelectedClient] = useState<Client | undefined>(undefined);
 
   const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -40,17 +41,11 @@ const ClientsPage: React.FC = () => {
     setClients(filtered);
   };
 
-  // Ver cliente
-  const handleView = (client: Client) => {
-    setSelectedClient(client);
-    setModalMode('view');
-    setModalOpen(true);
-  };
 
   // Editar cliente
   const handleEdit = (client: Client) => {
     setSelectedClient(client);
-    setModalMode('edit');
+    setModalMode('Editar');
     setModalOpen(true);
   };
 
@@ -63,7 +58,7 @@ const ClientsPage: React.FC = () => {
   // Crear cliente
   const handleCreate = () => {
     setSelectedClient(undefined);
-    setModalMode('edit');
+    setModalMode('Crear');
     setModalOpen(true);
   };
 
@@ -141,7 +136,7 @@ const ClientsPage: React.FC = () => {
       </div>
 
       <Table
-        clients={clients}
+        data={clients}
         onCreate={handleCreate}
         onEdit={handleEdit}
         title=""
@@ -149,6 +144,10 @@ const ClientsPage: React.FC = () => {
         showSearch={true}
         onSearch={handleSearch}
         onDelete={handleDeleteClient}
+        columns={["Nombre","Apellidos","Saldo","Número de cuenta","Acciones"]}
+        fields={["firstName","lastName","balance","accountNumber"]}
+        actions={["onEdit","onDelete"]}
+        showCreateButton={true}
         />
       {modalOpen && (
         <ModalClient

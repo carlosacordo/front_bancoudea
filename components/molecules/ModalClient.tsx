@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../atoms/Button';
-import { Client } from './Table';
+import { Client } from '../../types/clients';
 
-export type ModalMode = 'view' | 'edit';
+
+export type ModalMode = 'Crear' | 'Editar';
 
 export type ModalClientProps = {
   open: boolean;
@@ -35,7 +36,6 @@ const ModalClient: React.FC<ModalClientProps> = ({
 
   if (!open) return null;
 
-  const readOnly = mode === 'view';
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -66,20 +66,17 @@ const ModalClient: React.FC<ModalClientProps> = ({
               name="firstName"
               value={form.firstName}
               onChange={handleChange}
-              readOnly={readOnly}
               className="mt-1 block w-full border border-gray-300 rounded px-2 py-1"
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Apellido
-            </label>
+              Apellido</label>
             <input
               type="text"
               name="lastName"
               value={form.lastName}
-              onChange={handleChange}
-              readOnly={readOnly}
+              onChange={handleChange}              
               className="mt-1 block w-full border border-gray-300 rounded px-2 py-1"
             />
           </div>
@@ -92,7 +89,6 @@ const ModalClient: React.FC<ModalClientProps> = ({
               name="accountNumber"
               value={form.accountNumber}
               onChange={handleChange}
-              readOnly={readOnly}
               className="mt-1 block w-full border border-gray-300 rounded px-2 py-1"
             />
           </div>
@@ -106,19 +102,12 @@ const ModalClient: React.FC<ModalClientProps> = ({
               name="balance"
               value={form.balance}
               onChange={handleChange}
-              readOnly={readOnly}
               className="mt-1 block w-full border border-gray-300 rounded px-2 py-1"
             />
           </div>
           <div className="flex justify-end space-x-2 mt-4">
-            <Button type="button" onClick={onClose} className="bg-gray-500">
-              Cerrar
-            </Button>
-            {!readOnly && (
-              <Button type="submit" className="bg-blue-500">
-                Guardar
-              </Button>
-            )}
+            <Button type="button" onClick={onClose} classNameContent="bg-gray-500 text-white px-4 py-2 rounded"  label='Cerrar'/>
+            <Button type="submit" classNameContent="bg-blue-500 text-white px-4 py-2 rounded" label='Guardar' />
           </div>
         </form>
       </div>
