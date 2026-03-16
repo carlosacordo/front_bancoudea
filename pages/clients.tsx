@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+  import React, { useState, useEffect } from 'react';
 import Table, { Client } from '../components/molecules/Table';
 import ModalClient, { ModalMode } from '../components/molecules/ModalClient';
 
@@ -68,20 +68,31 @@ const ClientsPage: React.FC = () => {
   };
 
   // Guardar cliente (POST)
-  const handleSave = async (data: Omit<Client, 'id'>) => {
+  const handleSave = async (data: Omit<Client, 'id'>, id?: number) => {
     try {
-      if (!apiBase) throw new Error('API base URL no definida');
+      if (!apiBase) throw new Error('API base URL no definida');      
+      const url = id
+        ? `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/customers/${id}`
+        : `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/customers`;
 
-      const res = await fetch(`${apiBase}/api/customers`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const method = id ? 'PUT' : 'POST';
+
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(data),
       });
 
-      if (!res.ok) throw new Error('Error creando cliente');
+      if (!response.ok) {
+        throw new Error('Error guardando cliente');
+      }
 
-      const newClient: Client = await res.json();
-      console.log('Cliente creado:', newClient);
+    // ✅ Cierra el modal
+    setModalOpen(false);
+    setSelectedClient(undefined);
+
 
       // Cierra modal
       handleClose();
@@ -96,6 +107,32 @@ const ClientsPage: React.FC = () => {
     }
   };
 
+  const handleDeleteClient = async (id: number) => {
+  const confirmDelete = confirm('¿Seguro que deseas eliminar este cliente?');
+
+  if (!confirmDelete) return;
+
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/customers/${id}`,
+      {
+        method: 'DELETE',
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Error eliminando cliente');
+    }
+
+    console.log('Cliente eliminado');
+
+    fetchClients();
+  } catch (error) {
+    console.error('Error eliminando cliente:', error);
+    alert('Ocurrió un error al eliminar el cliente.');
+  }
+};
+
   return (
     <div>
       <div>
@@ -105,14 +142,14 @@ const ClientsPage: React.FC = () => {
 
       <Table
         clients={clients}
-        onView={handleView}
+        onCreate={handleCreate}
         onEdit={handleEdit}
         title=""
         description=""
         showSearch={true}
         onSearch={handleSearch}
-        onCreate={handleCreate}
-      />
+        onDelete={handleDeleteClient}
+        />
       {modalOpen && (
         <ModalClient
           open={modalOpen}
