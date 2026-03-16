@@ -5,10 +5,10 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   classNameContent: string;  
 };
 
-const Button: React.FC<ButtonProps> = ({ children, label, ...props }) => (
+const Button: React.FC<ButtonProps> = ({ children, label, classNameContent, ...props }) => (
   <button
     {...props}
-    className={props.classNameContent}
+    className={classNameContent}
   >
     {children || label}
   </button>
