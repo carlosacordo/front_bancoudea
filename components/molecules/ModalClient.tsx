@@ -9,7 +9,7 @@ export type ModalClientProps = {
   mode: ModalMode;
   client?: Client;
   onClose: () => void;
-  onSave: (data: Omit<Client, 'id'>) => void;
+  onSave: (data: Omit<Client, 'id'>, id?: number) => void;
 };
 
 const ModalClient: React.FC<ModalClientProps> = ({
@@ -49,7 +49,7 @@ const ModalClient: React.FC<ModalClientProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSave(form);
+    onSave(form, client?.id);
   };
 
   return (
