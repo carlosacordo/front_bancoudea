@@ -19,7 +19,7 @@ Este proyecto fue desarrollado usando **Next.js** y siguiendo la metodología de
 ## Características del proyecto
 
 - Gestión de estado y comunicación entre componentes siguiendo buenas prácticas de React y Next.js.
-- Estilos responsivos con TailwindCSS (opcional si usas Tailwind).
+- Estilos responsivos con TailwindCSS.
 
 ## Beneficios de la arquitectura
 
