@@ -45,7 +45,7 @@ const Table: React.FC<TableProps> = ({
     <div className="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md rounded-xl">
       <div className="flex items-center justify-between gap-4 mb-4">
         {showCreateButton && (
-          <Button label="CREAR CLIENTE" classNameContent="btn-create bg-green-500 text-white px-4 rounded h-10" onClick={onCreate} />
+          <Button label="CREAR CLIENTE" classNameContent="bg-green-500 text-white px-2 py-1 rounded text-sm" onClick={onCreate} />
         )}
         <div className="flex flex-col items-center flex-1 mx-4">
           {title && <h5 className="text-xl font-semibold text-blue-gray-900">{title}</h5>}
@@ -79,10 +79,10 @@ const Table: React.FC<TableProps> = ({
               ))}
               <td className="flex gap-2 py-2">
                 {actions?.includes('onEdit') && (
-                  <Button onClick={() => onEdit(c)} classNameContent="bg-green-500 text-white px-2 py-1 rounded" label='EDITAR'/>
+                  <Button onClick={() => onEdit(c)} classNameContent="bg-green-500 text-white px-2 py-1 rounded text-sm" label='EDITAR'/>
                 )}
                 {actions?.includes('onDelete') && (
-                  <Button onClick={() => onDelete(c.id)} classNameContent="bg-red-500 text-white px-2 py-1 rounded" label='ELIMINAR'/>
+                  <Button onClick={() => onDelete(c.id)} classNameContent="bg-red-500 text-white px-2 py-1 rounded text-sm" label='ELIMINAR'/>
                 )}
               </td>
             </tr>

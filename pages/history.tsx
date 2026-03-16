@@ -103,6 +103,7 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
             onCreate={() => {}}
             onDelete={() => {}}
             onEdit={() => {}}
+            showSearch={true}
             />
 
         )}
@@ -112,36 +113,3 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
 };
 
 export default HistoryPage;
-
-/**
- * 
- * 
- * <table className="w-full text-left table-auto min-w-max">
-            <thead>
-              <tr>
-                {["# Transacción", "Cuenta Emisora", "Cuenta Receptora", "Monto", "Fecha"].map(
-                  (col) => (
-                    <th key={col} className="py-3">
-                      <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                        {col}
-                      </p>
-                    </th>
-                  )
-                )}
-              </tr>
-            </thead>
-            <tbody>
-              {transactions?.map((tx) => (
-                <tr key={tx.id} className="hover:bg-gray-50 even:bg-gray-100">
-                  <td className="py-3 font-bold text-sm text-blue-gray-900">{tx.id}</td>
-                  <td className="py-3 text-sm text-blue-gray-900">{tx.fromAccount}</td>
-                  <td className="py-3 text-sm text-blue-gray-900">{tx.toAccount}</td>
-                  <td className="py-3 text-sm text-blue-gray-900">${tx.amount?.toFixed(2)}</td>
-                  <td className="py-3 text-sm text-blue-gray-900">
-                    {new Date(tx.date).toLocaleDateString()}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
- */

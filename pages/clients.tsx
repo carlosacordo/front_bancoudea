@@ -7,7 +7,7 @@ const ClientsPage: React.FC = () => {
   const [allClients, setAllClients] = useState<Client[]>([]);
   const [clients, setClients] = useState<Client[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalMode, setModalMode] = useState<ModalMode>('view');
+  const [modalMode, setModalMode] = useState<ModalMode>('Crear');
   const [selectedClient, setSelectedClient] = useState<Client | undefined>(undefined);
 
   const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -41,17 +41,11 @@ const ClientsPage: React.FC = () => {
     setClients(filtered);
   };
 
-  // Ver cliente
-  const handleView = (client: Client) => {
-    setSelectedClient(client);
-    setModalMode('view');
-    setModalOpen(true);
-  };
 
   // Editar cliente
   const handleEdit = (client: Client) => {
     setSelectedClient(client);
-    setModalMode('edit');
+    setModalMode('Editar');
     setModalOpen(true);
   };
 
@@ -64,7 +58,7 @@ const ClientsPage: React.FC = () => {
   // Crear cliente
   const handleCreate = () => {
     setSelectedClient(undefined);
-    setModalMode('edit');
+    setModalMode('Crear');
     setModalOpen(true);
   };
 
